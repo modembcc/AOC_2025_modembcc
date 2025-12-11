@@ -4,3 +4,4 @@ One "language" each day
 - 2: Java
 - 3: C
 - 4: JS
+- 5: Go

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Day 4</title>
+  </head>
+  <body>
+    Here's Day 4's answer:
+    <p id="ans"></p>
+    <script>
+      let ans = 0;
+      fetch("four.in")
+        .then((res) => res.text())
+        .then((text) => {
+          arr = text.split("\n");
+          for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+              let isRoll = (a, b) =>
+                a >= 0 &&
+                b >= 0 &&
+                a < arr.length &&
+                b < arr[a].length &&
+                arr[a][b] == "@"
+                  ? 1
+                  : 0;
+              let numRolls =
+                isRoll(i - 1, j - 1) +
+                isRoll(i - 1, j) +
+                isRoll(i - 1, j + 1) +
+                isRoll(i, j - 1) +
+                isRoll(i, j + 1) +
+                isRoll(i + 1, j - 1) +
+                isRoll(i + 1, j) +
+                isRoll(i + 1, j + 1);
+              if (numRolls < 4 && isRoll(i, j)) {
+                ans++;
+              }
+            }
+          }
+          document.getElementById("ans").innerHTML = ans;
+        })
+        .catch((e) => console.error(e));
+    </script>
+  </body>
+</html>
